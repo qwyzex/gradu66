@@ -8,6 +8,8 @@ const Envelope = () => {
     const [equilibrium, setEquilibrium] = useState(false);
     const [readStance, setReadStance] = useState(false);
 
+    const [activeCardIndex, setActiveCardIndex] = useState(0);
+
     const time_throw = 1750;
     const time_equil = 1750;
 
@@ -23,7 +25,34 @@ const Envelope = () => {
 
     const handleClickLetter = () => {
         if (equilibrium) {
-            setReadStance(!readStance);
+            setReadStance(true);
+            // setReadStance(!readStance);
+        }
+    };
+
+    // CARDS
+    const cards = [
+        { id: 1, src: "/CoverLetter.svg" },
+        { id: 2, src: "/LetterDesign.svg" },
+        { id: 3, src: "/LetterDesign.svg" },
+        { id: 4, src: "/LetterDesign.svg" },
+        { id: 5, src: "/LetterDesign.svg" },
+        { id: 6, src: "/LetterDesign.svg" },
+        { id: 7, src: "/LetterDesign.svg" },
+        { id: 8, src: "/LetterDesign.svg" },
+        { id: 9, src: "/LetterDesign.svg" },
+        { id: 10, src: "/LetterDesign.svg" },
+    ];
+
+    const handleNext = () => {
+        if (activeCardIndex < cards.length - 1) {
+            setActiveCardIndex(activeCardIndex + 1);
+        }
+    };
+
+    const handlePrevious = () => {
+        if (activeCardIndex > 0) {
+            setActiveCardIndex(activeCardIndex - 1);
         }
     };
 
@@ -40,41 +69,45 @@ const Envelope = () => {
                     className={`${styles.letter} ${readStance && styles.readStance}`}
                     onClick={handleClickLetter}
                 >
-                    <div className={`${styles.card} ${styles.activeCard}`}>
-                        <img src="/CoverLetter.svg" alt="" />
-                        <button>NEXT</button>
-                        <button>PREVIOUS</button>
-                    </div>
-                    <div className={`${styles.card} ${styles.secondCard}`}>
-                        <img src="/LetterDesign.svg" alt="" />
-                        <button>NEXT</button>
-                        <button>PREVIOUS</button>
-                    </div>
-                    <div className={`${styles.card} ${styles.thirdCard}`}>
-                        <img src="/LetterDesign.svg" alt="" />
-                        <button>NEXT</button>
-                        <button>PREVIOUS</button>
-                    </div>
-                    <div className={`${styles.card}`}>
-                        <img src="/LetterDesign.svg" alt="" />
-                        <button>NEXT</button>
-                        <button>PREVIOUS</button>
-                    </div>
-                    <div className={`${styles.card}`}>
-                        <img src="/LetterDesign.svg" alt="" />
-                        <button>NEXT</button>
-                        <button>PREVIOUS</button>
-                    </div>
-                    <div className={`${styles.card}`}>
-                        <img src="/LetterDesign.svg" alt="" />
-                        <button>NEXT</button>
-                        <button>PREVIOUS</button>
-                    </div>
-                    <div className={`${styles.card}`}>
-                        <img src="/LetterDesign.svg" alt="" />
-                        <button>NEXT</button>
-                        <button>PREVIOUS</button>
-                    </div>
+                    {cards.map((card, index) => {
+                        let cardClass = styles.card; // Base card class
+
+                        // Dynamically assign classes based on position
+                        if (index === activeCardIndex) {
+                            cardClass += ` ${styles.activeCard}`;
+                        } else if (index === activeCardIndex + 1) {
+                            cardClass += ` ${styles.secondCard}`;
+                        } else if (index === activeCardIndex + 2) {
+                            cardClass += ` ${styles.thirdCard}`;
+                        } else if (index < activeCardIndex) {
+                            const redundantIndex = activeCardIndex - index;
+                            if (redundantIndex === 1) {
+                                cardClass += ` ${styles.redundantOne}`;
+                            } else if (redundantIndex === 2) {
+                                cardClass += ` ${styles.redundantTwo}`;
+                            } else {
+                                cardClass += ` ${styles.redundantThree}`;
+                            }
+                        }
+
+                        return (
+                            <div key={card.id} className={cardClass}>
+                                <img src={card.src} alt={`Card ${card.id}`} />
+                                <button
+                                    onClick={handleNext}
+                                    disabled={index !== activeCardIndex}
+                                >
+                                    NEXT
+                                </button>
+                                <button
+                                    onClick={handlePrevious}
+                                    disabled={index !== activeCardIndex}
+                                >
+                                    PREVIOUS
+                                </button>
+                            </div>
+                        );
+                    })}
                 </div>
                 <img className={styles.bot} src="/env_bot.svg" alt="envelope" />
                 <img className={styles.arc} src="/env_arc.svg" alt="envelope" />
