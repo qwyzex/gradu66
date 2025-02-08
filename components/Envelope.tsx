@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import styles from "@/styles/Envelope.module.sass";
 import { useState } from "react";
+import Card from "./CardsConrtent";
 
 const Envelope = () => {
     const [open, setOpen] = useState(false);
@@ -32,16 +33,56 @@ const Envelope = () => {
 
     // CARDS
     const cards = [
-        { id: 1, src: "/CoverLetter.svg" },
-        { id: 2, src: "/LetterDesign.svg" },
-        { id: 3, src: "/LetterDesign.svg" },
-        { id: 4, src: "/LetterDesign.svg" },
-        { id: 5, src: "/LetterDesign.svg" },
-        { id: 6, src: "/LetterDesign.svg" },
-        { id: 7, src: "/LetterDesign.svg" },
-        { id: 8, src: "/LetterDesign.svg" },
-        { id: 9, src: "/LetterDesign.svg" },
-        { id: 10, src: "/LetterDesign.svg" },
+        {
+            id: 1,
+            src: "/CoverLetter.svg",
+            content: "",
+        },
+        {
+            id: 2,
+            src: "/LetterDesign.svg",
+            content: Card.Two(),
+        },
+        {
+            id: 3,
+            src: "/LetterDesign.svg",
+            content: Card.Three(),
+        },
+        {
+            id: 4,
+            src: "/LetterDesign.svg",
+            content: "",
+        },
+        {
+            id: 5,
+            src: "/LetterDesign.svg",
+            content: "",
+        },
+        {
+            id: 6,
+            src: "/LetterDesign.svg",
+            content: "",
+        },
+        {
+            id: 7,
+            src: "/LetterDesign.svg",
+            content: "",
+        },
+        {
+            id: 8,
+            src: "/LetterDesign.svg",
+            content: "",
+        },
+        {
+            id: 9,
+            src: "/LetterDesign.svg",
+            content: "",
+        },
+        {
+            id: 10,
+            src: "/LetterDesign.svg",
+            content: "",
+        },
     ];
 
     const handleNext = () => {
@@ -92,19 +133,21 @@ const Envelope = () => {
 
                         return (
                             <div key={card.id} className={cardClass}>
-                                <img src={card.src} alt={`Card ${card.id}`} />
-                                <button
-                                    onClick={handleNext}
-                                    disabled={index !== activeCardIndex}
-                                >
-                                    NEXT
-                                </button>
+                                {" "}
                                 <button
                                     onClick={handlePrevious}
                                     disabled={index !== activeCardIndex}
                                 >
-                                    PREVIOUS
+                                    <img src="/Arrow.svg" alt="arrow-next" />
                                 </button>
+                                <button
+                                    onClick={handleNext}
+                                    disabled={index !== activeCardIndex}
+                                >
+                                    <img src="/Arrow.svg" alt="arrow-next" />
+                                </button>
+                                <div>{card.content}</div>
+                                <img src={card.src} alt={`Card ${card.id}`} />
                             </div>
                         );
                     })}

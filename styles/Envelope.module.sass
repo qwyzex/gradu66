@@ -58,14 +58,55 @@
 
             filter: drop-shadow(0 0 7px #20202010)
 
+            > div
+                visibility: hidden
+                opacity: 0
+                transition: all 3.6s ease-in
+
+                display: flex
+                justify-content: center
+                align-items: center
+
+                // background-color: #ff000077 !important
+
+                width: 80%
+                height: 67%    
+
+                position: absolute
+                top: 50%
+                left: 50%
+                transform: translate(-50%, -50%)
+
             img 
-                width: 450px
                 transition: all 1s ease-in-out
+                // opacity: 0.5
+                width: 450px
             
             button
-                opacity: 0
+                background: none
+                border: none
 
+                position: absolute
+                top: 50%
+
+                visibility: hidden
+                opacity: 0
                 transition: all 0.6s ease
+                    
+                filter: drop-shadow( 0 0 17px #1f1e1dc0)
+                cursor: pointer
+
+                img
+                    width: 50px !important
+
+                &:disabled
+                    visibility: hidden !important
+                &:nth-child(1)
+                    right: 105%
+                &:nth-child(2)
+                    left: 105%
+                    img
+                        rotate: 180deg
 
             //  =================== //
 
@@ -97,29 +138,44 @@
             //  =================== //
 
         &.readStance
-            img
-                width: 600px
             .card
                 scale: 0.9
+
+                img
+                    width: 800px
 
                 &.redundantOne
                     transform: rotateX(-12deg) scale(1, 0.9) translateY(calc(-50% + 50vh + 100px))
                 &.redundantTwo
                     transform: rotateX(-20deg) scale(1.1, 1) translateY(calc(-50% + 50vh + 130px))
                 &.redundantThree
-                    transform: rotateX(-28deg) scale(1.2, 1.2) translateY(calc(-50% + 50vh + 160px))
+                    transform: rotateX(-28deg) scale(1.25, 1.2) translateY(calc(-50% + 50vh + 160px))
 
                 &.activeCard
                     scale: 1
-                    button
+                    
+                    > div
+                        visibility: visible
                         opacity: 1
+                        transition: all 0.4s ease-in
+
+                    button
+                        visibility: visible
+                        opacity: 0.6
+
+                        &:hover
+                            opacity: 1
+                            transform: translateY(-5px)
+                        &:active
+                            transform: translateY(3px)
+                            filter: drop-shadow( 0 0 17px #ffffffda)
                         
                 &.secondCard
-                    transform: translateX( - 90px ) translateY(-50%)
+                    transform: translateX( - 60px ) translateY(-50%)
                     rotate: -3deg
                     scale: 0.95
                 &.thirdCard
-                    transform: translateX( + 40px ) translateY(-50%)
+                    transform: translateX( + 60px ) translateY(-50%)
                     rotate: 3deg
                     scale: 0.95
 
