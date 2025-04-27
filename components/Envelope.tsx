@@ -43,46 +43,46 @@ const Envelope = () => {
             src: "/LetterDesign.svg",
             content: Card.Two(),
         },
-        {
-            id: 3,
-            src: "/LetterDesign.svg",
-            content: Card.Three(),
-        },
-        {
-            id: 4,
-            src: "/LetterDesign.svg",
-            content: "",
-        },
-        {
-            id: 5,
-            src: "/LetterDesign.svg",
-            content: "",
-        },
-        {
-            id: 6,
-            src: "/LetterDesign.svg",
-            content: "",
-        },
-        {
-            id: 7,
-            src: "/LetterDesign.svg",
-            content: "",
-        },
-        {
-            id: 8,
-            src: "/LetterDesign.svg",
-            content: "",
-        },
-        {
-            id: 9,
-            src: "/LetterDesign.svg",
-            content: "",
-        },
-        {
-            id: 10,
-            src: "/LetterDesign.svg",
-            content: "",
-        },
+        // {
+        //     id: 3,
+        //     src: "/LetterDesign.svg",
+        //     content: Card.Three(),
+        // },
+        // {
+        //     id: 4,
+        //     src: "/LetterDesign.svg",
+        //     content: "",
+        // },
+        // {
+        //     id: 5,
+        //     src: "/LetterDesign.svg",
+        //     content: "",
+        // },
+        // {
+        //     id: 6,
+        //     src: "/LetterDesign.svg",
+        //     content: "",
+        // },
+        // {
+        //     id: 7,
+        //     src: "/LetterDesign.svg",
+        //     content: "",
+        // },
+        // {
+        //     id: 8,
+        //     src: "/LetterDesign.svg",
+        //     content: "",
+        // },
+        // {
+        //     id: 9,
+        //     src: "/LetterDesign.svg",
+        //     content: "",
+        // },
+        // {
+        //     id: 10,
+        //     src: "/LetterDesign.svg",
+        //     content: "",
+        // },
     ];
 
     const handleNext = () => {
@@ -100,9 +100,8 @@ const Envelope = () => {
     return (
         <>
             <main
-                className={`${styles.container} ${throwEnvelope ? styles.throw : ""}  ${
-                    open ? styles.open : ""
-                }`}
+                className={`${styles.container} ${throwEnvelope ? styles.throw : ""}  ${open ? styles.open : ""
+                    }`}
                 onClick={handleClickOpen}
             >
                 <img className={styles.top} src="/env_top.svg" alt="envelope" />
@@ -132,7 +131,7 @@ const Envelope = () => {
                         }
 
                         return (
-                            <div key={card.id} className={cardClass}>
+                            <div key={card.id} className={cardClass} style={{ backgroundImage: `url('${card.src}')` }}>
                                 {" "}
                                 <button
                                     onClick={handlePrevious}
@@ -147,7 +146,7 @@ const Envelope = () => {
                                     <img src="/Arrow.svg" alt="arrow-next" />
                                 </button>
                                 <div>{card.content}</div>
-                                <img src={card.src} alt={`Card ${card.id}`} />
+                                {/* <img src={card.src} alt={`Card ${card.id}`} /> */}
                             </div>
                         );
                     })}
